@@ -13,6 +13,10 @@ let scoreP = document.getElementById("scoreP");
 let winner = document.getElementById("winner");
 let container = document.getElementById("container");
 
+    /* img card */
+let cardHolderD = document.getElementsByClassName("imgCardD");
+let cardHolderP = document.getElementsByClassName("imgCardP");
+
 /* DOM buttons */
 let start = document.getElementById("start");
 let fishingP = document.getElementById("fishingP");
@@ -22,6 +26,7 @@ let doneP = document.getElementById("doneP");
 /* addEvents */
 let fishP = fishingP.addEventListener("click", ()=>{
     fishingPlayer();
+    imgCardsP();
     return;
 });
 let donP = doneP.addEventListener("click", ()=>{
@@ -37,10 +42,13 @@ return;
 })
 
 
+
+
 /* Funzione Game */
 let game = function game(){
     extrDesk();
     extrPlayer();
+    imgCardsP();
     specialScoreP();
     specialScoreD();
     /* turno player */
@@ -55,7 +63,9 @@ let game = function game(){
 let smartDesk = function smartDesk(){
     
     for (i = 0; i < 6; i++){
-        
+        /* img cards */
+        imgCardsD();
+
         if(scoreDesk >= scorePlayer){
             cardsD.innerText = "Hand: " + deskHand;
             scoreD.innerText = "Score: " + scoreDesk;
@@ -65,6 +75,10 @@ let smartDesk = function smartDesk(){
             return;
         }
         fishingDesk();
+          /* img cards */
+        imgCardsD();
+        
+
         cardsD.innerText = "Hand: " + deskHand;
         scoreD.innerText = "Score: " + scoreDesk;
         if(scoreDesk > 21){winner.innerText = "HAI VINTO!!! Il Desk ha sballato!"; 
@@ -158,5 +172,18 @@ let specialScoreD = function specialScoreD(){
     return;
 }
 
+/* Funzione assegnazione carte img */
+let imgCardsD = function imgCardsD(){
+    for(i = 0; i < deskHand.length; i++){   
+        cardHolderD[i].src = "assets/" + deskHand[i] + "_c.png";
+    }
+}
+let imgCardsP = function imgCardsP(){
+    for(i = 0; i < playerHand.length; i++){   
+        cardHolderP[i].src = "assets/" + playerHand[i] + "_c.png";
+    }
+}
 
 
+
+console.log(cardHolder);
